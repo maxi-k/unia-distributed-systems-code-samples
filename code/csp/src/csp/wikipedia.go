@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"strconv"
 	"io/ioutil"
 	"net/http"
@@ -15,8 +16,8 @@ type WikipediaResult struct {
 	links []string
 }
 
-func wikipedia(searchterm string, limit int, namespace int) (*WikipediaResult, error) {
-	baseUrl, err := url.Parse("https://en.wikipedia.org/w/api.php")
+func wikipedia(language string, searchterm string, limit int, namespace int) (*WikipediaResult, error) {
+	baseUrl, err := url.Parse(fmt.Sprintf("https://%s.wikipedia.org/w/api.php", language))
 	if err != nil {
 		return nil, err 
 	}
